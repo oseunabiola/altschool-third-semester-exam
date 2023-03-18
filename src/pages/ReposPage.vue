@@ -1,15 +1,16 @@
 <script setup>
-import { defineProps, onMounted, reactive } from "vue";
-import ErrorCard from "./ErrorCard.vue";
-import LoadingCard from "./LoadingCard.vue";
-import RepoCard from "./RepoCard.vue";
+import ErrorCard from "@/components/ErrorCard.vue";
+import LoadingCard from "@/components/LoadingCard.vue";
+import RepoCard from "@/components/RepoCard.vue";
+import { onMounted, reactive } from "vue";
+import { useRoute } from "vue-router";
 
-const props = defineProps(["developer"]);
+const developer = useRoute().params.username;
 const state = reactive({ repos: [], isLoading: true, error: null });
 
 async function getDeveloperRepos() {
   try {
-    let result = await fetch(`https://api.github.com/users/${props.developer}/repos`);
+    let result = await fetch(`https://api.github.com/users/${developer}/repos`);
     if (!result.ok) {
       result = await result.json();
       throw new Error(result.message);
@@ -38,7 +39,7 @@ onMounted(() => {
     </ErrorCard>
 
     <template v-if="state.repos.length">
-      <p class="fw-bold mb-1">List of repos by {{ props.developer }}</p>
+      <p class="fw-bold mb-1">List of repos by {{ developer }}</p>
       <ul class="ps-0 list-group">
         <template v-for="repo in state.repos" :key="repo.id">
           <li class="list-group-item">

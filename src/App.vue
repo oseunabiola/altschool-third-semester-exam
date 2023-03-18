@@ -65,6 +65,12 @@ main {
 .rounded-400 {
   border-radius: 15px;
 }
+.developer-cards {
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+}
+.developer-card:hover {
+  background-color: var(--bs-warning);
+}
 </style>
 
 <template>

@@ -42,6 +42,7 @@ a {
 main {
   min-height: 100%;
 }
+
 .wrapper {
   --border-radius: 15px;
 

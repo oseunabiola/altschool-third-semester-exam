@@ -9,7 +9,7 @@ import Search from "./pages/SearchPage.vue";
 const routes = [
   { path: "/", component: Search, name: "search" },
   { path: "/repos/:username", component: ReposPage, name: "repos" },
-  { path: "/repo/:username/:repoName", component: RepoDetails, name: "repo" },
+  { path: "/repos/:username/:repoName", component: RepoDetails, name: "repo" },
   { path: "/:pathMatch(.*)*", component: NotFound, name: "not-found" },
 ];
 

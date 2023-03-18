@@ -9,7 +9,7 @@ const props = defineProps(["developers", "developer"]);
   <div class="py-3">
     <template v-if="props.developers">
       <p class="mb-2">
-        List of developers matching <span class="fst-italic fw-bold"> {{ props.developer }}</span>
+        List of developers matching <span class="fst-italic fw-bold"> {{ developer }}</span>
       </p>
       <ul class="developer-cards | d-grid gap-3 ps-0">
         <template v-for="dev in props.developers" :key="dev.id">

@@ -5,12 +5,12 @@ import LoadingCard from "@/components/LoadingCard.vue";
 import useFetch from "@/useFetch";
 import { onMounted, reactive, ref } from "vue";
 
-const state = reactive({ developers: [], error: null, isLoading: true });
-const username = ref("");
+const state = reactive({ developers: [], error: null, isLoading: true, currentSearch: "" });
+const username = ref("oseunabiola");
 const input = ref(null);
 
 async function getDevelopers() {
-  input.value.blur()
+  input.value.blur();
   state.developers = [];
   state.isLoading = true;
   const url = `https://api.github.com/search/users?q=${username.value}`;
@@ -23,11 +23,12 @@ async function getDevelopers() {
     state.error = error.message;
   } finally {
     state.isLoading = false;
+    state.currentSearch = username.value;
   }
 }
 
 onMounted(() => {
-  state.isLoading = false
+  state.isLoading = false;
   username.value && getDevelopers();
 });
 </script>
@@ -57,5 +58,8 @@ onMounted(() => {
     <p>Looking for a dev? Search devs with github username</p>
   </div>
 
-  <DeveloperList v-if="username" :developers="state.developers.items" :developer="username" />
+  <DeveloperList
+    v-if="username"
+    :developers="state.developers.items"
+    :developer="state.currentSearch" />
 </template>

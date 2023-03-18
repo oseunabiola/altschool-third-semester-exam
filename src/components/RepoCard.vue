@@ -14,7 +14,7 @@ function isForked(fork) {
 <template>
   <div class="py-2">
     <h2 class="h6">
-      <router-link :to="'/repo/' + props.repo.full_name" class="me-2">
+      <router-link :to="'/repos/' + props.repo.full_name" class="me-2">
         {{ props.repo.name }}
       </router-link>
       <span v-if="props.repo.private" class="badge rounded-pill bg-success fs-240">Private</span>

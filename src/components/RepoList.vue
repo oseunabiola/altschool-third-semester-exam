@@ -1,5 +1,7 @@
 <script setup>
 import { defineProps, onMounted, reactive } from "vue";
+import ErrorCard from "./ErrorCard.vue";
+import LoadingCard from "./LoadingCard.vue";
 import RepoCard from "./RepoCard.vue";
 
 const props = defineProps(["developer"]);
@@ -28,19 +30,22 @@ onMounted(() => {
 
 <template>
   <div class="py-3">
-    <div v-if="state.isLoading" class="loading">Loading...</div>
-    <div v-if="state.error" class="error">
+    <LoadingCard v-if="state.isLoading" />
+    <ErrorCard v-if="state.error">
       <p>Oops! Something went wrong. Please try again later</p>
       <p class="mb-0 small">Details:</p>
       <pre>{{ state.error }}</pre>
-    </div>
+    </ErrorCard>
 
-    <ul class="ps-0 list-group">
-      <template v-for="repo in state.repos" :key="repo.id">
-        <li class="list-group-item">
-          <RepoCard :repo="repo" />
-        </li>
-      </template>
-    </ul>
+    <template v-if="state.repos.length">
+      <p class="fw-bold mb-1">List of repos by {{ props.developer }}</p>
+      <ul class="ps-0 list-group">
+        <template v-for="repo in state.repos" :key="repo.id">
+          <li class="list-group-item">
+            <RepoCard :repo="repo" />
+          </li>
+        </template>
+      </ul>
+    </template>
   </div>
 </template>

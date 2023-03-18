@@ -1,4 +1,7 @@
 <style>
+html {
+  scroll-behavior: smooth;
+}
 body,
 html,
 #app {
@@ -6,11 +9,38 @@ html,
   overflow: auto;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-size: 100%;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
 li {
   list-style-type: none;
 }
 a {
   text-decoration: none;
+}
+main {
+  min-height: 100%;
 }
 .wrapper {
   --border-radius: 15px;
@@ -32,8 +62,8 @@ a {
 .fs-240 {
   font-size: 0.6rem;
 }
-main {
-  min-height: 100%;
+.rounded-400 {
+  border-radius: 15px;
 }
 </style>
 
